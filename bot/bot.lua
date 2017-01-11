@@ -2,7 +2,7 @@
 
 -- params : ...
 -- function num : 0 , upvalues : _ENV
-tg = dofile("./tg/tdcli.lua")
+bot = dofile("./tg/tdcli.lua")
 URL = require("socket.url")
 http = require("socket.http")
 https = require("ssl.https")
@@ -10,12 +10,12 @@ ltn12 = require("ltn12")
 -- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
 
 http.TIMEOUT = 10
-serpent = (loadfile("./file/serpent.lua"))()
-feedparser = (loadfile("./file/feedparser.lua"))()
-json = (loadfile("./file/JSON.lua"))()
-mimetype = (loadfile("./file/mimetype.lua"))()
-redis = (loadfile("./file/redis.lua"))()
-JSON = (loadfile("./file/dkjson.lua"))()
+serpent = (loadfile("./libs/serpent.lua"))()
+feedparser = (loadfile("./libs/feedparser.lua"))()
+json = (loadfile("./libs/JSON.lua"))()
+mimetype = (loadfile("./libs/mimetype.lua"))()
+redis = (loadfile("./libs/redis.lua"))()
+JSON = (loadfile("./libs/dkjson.lua"))()
 run_bash = function(str)
   -- function num : 0_0 , upvalues : _ENV
   local cmd = (io.popen)(str)
