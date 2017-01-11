@@ -32,9 +32,9 @@ mute_audio = "no"
                   }
       }
       save_data(_config.group.data, group)
-tg.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Has Been Added!</b>', 1, 'html')
+bot.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Has Been Added!</b>', 1, 'html')
 else
-tg.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Is Already Added!</b>', 1, 'html')
+bot.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Is Already Added!</b>', 1, 'html')
 end
 end
 local function remgroup(msg)
@@ -43,9 +43,9 @@ local groupa = group[tostring(msg.chat_id)]
 if groupa then
 group[tostring(msg.chat_id)] = nil
       save_data(_config.group.data, group)
-tg.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Has Been Removed!</b>', 1, 'html')
+bot.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Has Been Removed!</b>', 1, 'html')
 else
-tg.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Is Not Added!</b>', 1, 'html')
+bot.sendMessage(msg.chat_id, msg.id_, 1, '<b>SuperGroup Is Not Added!</b>', 1, 'html')
 end
 end
 
