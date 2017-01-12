@@ -611,7 +611,7 @@ viewMessages = function(msg)
   -- DECOMPILER ERROR at PC18: Unhandled construct in 'MakeBoolean' P1
 
   if redis:get("markread") and redis:get("markread") == "on" then
-    (tg.mark_read)(msg.chat_id_, {[0] = msg.id_})
+    (bot.mark_read)(msg.chat_id_, {[0] = msg.id_})
   end
   redis:set("markread", "on")
 end
