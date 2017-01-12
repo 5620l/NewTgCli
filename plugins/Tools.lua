@@ -70,3 +70,5 @@ tdcli_function ({
         limit_ = 1
       }, getpro, nil)
 end
+if matches[1] == 'setphoto' and is_owner(msg) then
+bot.sendMessage(msg.chat_id_, msg.id_, 1, '_Please send a photo noew!_', 1, 'md')		 database:set('bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true)    end
