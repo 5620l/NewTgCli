@@ -1,5 +1,5 @@
 local function run(msg, matches)
-	if matches[1] == 'addadmin' and is_sudo(msg) and msg.reply_to_message_id_ then
+if matches[1] == 'addadmin' and is_sudo(msg) and msg.reply_to_message_id_ then
   function addadmin_by_reply(extra, result, success)
   local hash = 'bot:admins:'
   if database:sismember(hash, result.sender_user_id_) then
@@ -41,7 +41,7 @@ text = "<i>Bot Admins List Is Empty!</i>"
 end
 bot.sendMessage(msg.chat_id_, msg.id_, 1, '`'..text..'`', 'html')
 end
-if matches[1] == 'id' and msg.reply_to_message_id_ ~= 0 then
+if matches[1] == 'id' and msg.reply_to_message_id_ then
 function id_by_reply(extra, result, success)
 local user_msgs = redis:get('user:msgs'..result.chat_id_..':'..result.sender_user_id_)
 bot.sendMessage(msg.chat_id_, msg.id_, 1, "<b>User ID : "..result.sender_user_id_.."\nNumber Of Messages : "..user_msgs.."</b>", 1, 'html')
@@ -54,3 +54,8 @@ bot.addChatMember(result.chat_id_, result.sender_user_id_, 5)
 end
 bot.getMessage(msg.chat_id_, msg.reply_to_message_id_,inv_reply)
 end
+if matches[1] == 'id' and msg.reply_to_message_id_ == 0  then
+local function getpro(extra, result, success)
+local user_msgs = redis:get('user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
+if result.photos_[0] then
+bot.sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,'<b>Supergroup ID : '..msg.chat_id_..'\nYour ID : '..msg.sender_user_id_..'\n> Number of your Msgs: '..user_msgs,msg.id_,msg.id_)   else      send(msg.chat_id_, msg.id_, 1, "You Have'nt Profile Photo!!\n\n> *Supergroup ID:* `"..msg.chat_id_.."`\n*> Your ID:* `"..msg.sender_user_id_.."`\n*> Number of your Msgs: *`"..user_msgs.."`", 1, 'md')   end   end   tdcli_function ({    ID = "GetUserProfilePhotos",    user_id_ = msg.sender_user_id_,    offset_ = 0,    limit_ = 1  }, getpro, nil)	end
