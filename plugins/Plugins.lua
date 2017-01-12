@@ -105,10 +105,10 @@ local function run(msg, matches)
     print("enable: "..matches[2])
     return enable_plugin(plugin_name)
   end
-    end
+end
   if matches[1] == '-' and is_sudo(msg) then 
     if matches[2] == 'plugins' then
-    	text 'This plugin can\'t be disabled'
+    	text = 'This plugin can\'t be disabled'
 		bot.sendMessage(msg.chat_id_, 0, 1, text, 1, 'html')
     end
     print("disable: "..matches[2])
@@ -134,3 +134,5 @@ return {
     },
   run = run,
 }
+
+end
