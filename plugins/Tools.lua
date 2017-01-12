@@ -58,4 +58,15 @@ if matches[1] == 'id' and msg.reply_to_message_id_ == 0  then
 local function getpro(extra, result, success)
 local user_msgs = redis:get('user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 if result.photos_[0] then
-bot.sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,'<b>Supergroup ID : '..msg.chat_id_..'\nYour ID : '..msg.sender_user_id_..'\n> Number of your Msgs: '..user_msgs,msg.id_,msg.id_)   else      send(msg.chat_id_, msg.id_, 1, "You Have'nt Profile Photo!!\n\n> *Supergroup ID:* `"..msg.chat_id_.."`\n*> Your ID:* `"..msg.sender_user_id_.."`\n*> Number of your Msgs: *`"..user_msgs.."`", 1, 'md')   end   end   tdcli_function ({    ID = "GetUserProfilePhotos",    user_id_ = msg.sender_user_id_,    offset_ = 0,    limit_ = 1  }, getpro, nil)	end
+bot.sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,'<b>Supergroup ID : '..msg.chat_id_..'\nYour ID : '..msg.sender_user_id_..'\nNumber Of Your Messages : '..user_msgs..'</b>',msg.id_,msg.id_, 1, 'html')
+else      
+bot.sendMessage(msg.chat_id_, msg.id_, 1, "<b>You Have'nt Profile Photo!!</b>\n\n<i>Supergroup ID : "..msg.chat_id_.."\nYour ID : "..msg.sender_user_id_.."\nNumber Of Your Messages : "..user_msgs.."</i>", 1, 'html')
+end
+end
+tdcli_function ({
+        ID = "GetUserProfilePhotos",
+        user_id_ = msg.sender_user_id_,
+        offset_ = 0,
+        limit_ = 1
+      }, getpro, nil)
+end
