@@ -70,5 +70,15 @@ tdcli_function ({
         limit_ = 1
       }, getpro, nil)
 end
-if matches[1] == 'setphoto' and is_owner(msg) then
-bot.sendMessage(msg.chat_id_, msg.id_, 1, '_Please send a photo noew!_', 1, 'md')		 database:set('bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true)    end
+if matches[1] == 'delete' and is_momod(msg) then
+    local delnumb = {string.match(matches[2])}
+    if tonumber(delnumb[2]) > 100 then
+      bot.sendMessage(msg.chat_id_, msg.id_, 1, '<b>Error!</b>\n<i>Use /delete [1-100]</i>', 1, 'html')
+    else
+      local id = msg.id_ - 1
+      for i= id - delnumb[2] , id do
+        bot.deleteMessages(msg.chat_id_,{[0] = i})
+      end
+      bot.sendMessage(msg.chat_id_, msg.id_, 1, '<i>'..delnumb[2]..' Last Messages Has Been Removed!</i>', 1, 'html')
+    end	
+  end
