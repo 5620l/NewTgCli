@@ -1,10 +1,11 @@
 local function run(msg, matches)
 if matches[1] == 'createsuper' and is_sudo(msg) then
-   tg.createNewChannelChat(matches[2])
-   tg.sendMessage(msg.chat_id_, 0, 1, '<b>SuperGroup '..matches[2]..' Created!</b>', 1, 'html')
-elseif matches[1] == 'creategroup' and is_sudo(msg) then
-   tg.createNewGroupChat(matches[2])
-   tg.sendMessage(msg.chat_id_, 0, 1, '<b>Group '..matches[2]..' Created!</b>', 1, 'html')
+   bot.createNewChannelChat(matches[2], 1)
+   bot.sendMessage(msg.chat_id_, 0, 1, '<b>SuperGroup '..matches[2]..' Created!</b>', 1, 'html')
+end
+if matches[1] == 'creategroup' and is_sudo(msg) then
+   bot.createNewGroupChat(matches[2], 1)
+   bot.sendMessage(msg.chat_id_, 0, 1, '<b>Group '..matches[2]..' Created!</b>', 1, 'html')
 elseif matches[1] == 'upgrade' and is_sudo(msg) then
    tg.migrateGroupChatToChannelChat(msg.chat_id_)
 elseif matches[1] == 'edit' and is_momod(msg) then
