@@ -82,3 +82,15 @@ if matches[1] == 'delete' and is_momod(msg) then
       bot.sendMessage(msg.chat_id_, msg.id_, 1, '<i>'..delnumb[2]..' Last Messages Has Been Removed!</i>', 1, 'html')
     end	
   end
+end
+return {
+  pattern = {
+    "^[/#!](addadmin)$",
+    "^[/#!](remadmin)$",
+    "^[/#!](adminlist)$",
+    "^[/#!](id)$",
+    "^[/#!](invite)$",
+    "^[/#!](delete) (.*)$",
+    },
+  run = run,
+}
