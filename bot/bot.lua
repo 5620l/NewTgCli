@@ -1,14 +1,9 @@
---Command line : bot.lua
-
--- params : ...
 -- function num : 0 , upvalues : _ENV
 bot = dofile("./tg/tdcli.lua")
 URL = require("socket.url")
 http = require("socket.http")
 https = require("ssl.https")
 ltn12 = require("ltn12")
--- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
-
 http.TIMEOUT = 10
 serpent = (loadfile("./libs/serpent.lua"))()
 feedparser = (loadfile("./libs/feedparser.lua"))()
@@ -137,8 +132,6 @@ is_robot = function(msg)
   return var
 end
 
--- DECOMPILER ERROR at PC76: Confused about usage of register: R0 in 'UnsetPending'
-
 string.random = function(length)
   -- function num : 0_11 , upvalues : _ENV
   local str = ""
@@ -149,8 +142,6 @@ string.random = function(length)
   return str
 end
 
--- DECOMPILER ERROR at PC79: Confused about usage of register: R0 in 'UnsetPending'
-
 string.random = function(length)
   -- function num : 0_12 , upvalues : _ENV
   local str = ""
@@ -160,8 +151,6 @@ string.random = function(length)
   end
   return str
 end
-
--- DECOMPILER ERROR at PC82: Confused about usage of register: R0 in 'UnsetPending'
 
 string.split = function(self, sep)
   -- function num : 0_13 , upvalues : _ENV
@@ -175,15 +164,11 @@ string.split = function(self, sep)
   return fields
 end
 
--- DECOMPILER ERROR at PC85: Confused about usage of register: R0 in 'UnsetPending'
-
 string.trim = function(s)
   -- function num : 0_14 , upvalues : _ENV
   print("string.trim(s) is DEPRECATED use string:trim() instead")
   return s:gsub("^%s*(.-)%s*$", "%1")
 end
-
--- DECOMPILER ERROR at PC88: Confused about usage of register: R0 in 'UnsetPending'
 
 string.trim = function(self)
   -- function num : 0_15
@@ -341,20 +326,10 @@ editmessage = function(data)
   -- function num : 0_24 , upvalues : _ENV
   if data.ID == "Message" then
     msg = data.content_
-    -- DECOMPILER ERROR at PC10: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.text = "!!!edit:" .. msg.text_
-    -- DECOMPILER ERROR at PC13: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.chat_id = data.chat_id_
-    -- DECOMPILER ERROR at PC16: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.chat_id_ = data.chat_id_
-    -- DECOMPILER ERROR at PC19: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.from_id = data.sender_user_id_
-    -- DECOMPILER ERROR at PC22: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.id_ = data.id_
     match_plugins(msg)
     redis:set("message:tg", "non")
@@ -365,49 +340,23 @@ ownerset = function(data)
   -- function num : 0_25 , upvalues : _ENV
   if data.ID == "Message" then
     msg = data
-    -- DECOMPILER ERROR at PC5: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.text = "ownerset"
-    -- DECOMPILER ERROR at PC8: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.chat_id = data.chat_id_
-    -- DECOMPILER ERROR at PC11: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.chat_id_ = data.chat_id_
-    -- DECOMPILER ERROR at PC14: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.from_id = data.sender_user_id_
-    -- DECOMPILER ERROR at PC17: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.id_ = data.id_
     match_plugins(msg)
     redis:set("message:tg", "non")
   else
     if data.ID == "Chat" then
       msg = data
-      -- DECOMPILER ERROR at PC32: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.text = "!!ownerset2!!"
-      -- DECOMPILER ERROR at PC35: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.name = data.title_
-      -- DECOMPILER ERROR at PC42: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.photo = ((((data.type_).user_).profile_photo_).big_).persistent_id_
-      -- DECOMPILER ERROR at PC47: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.username = ((data.type_).user_).username
-      -- DECOMPILER ERROR at PC52: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.firstname = ((data.type_).user_).first_name
-      -- DECOMPILER ERROR at PC57: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.lastname = ((data.type_).user_).last_name
-      -- DECOMPILER ERROR at PC63: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.chat_id = redis:get("pro:chatid")
-      -- DECOMPILER ERROR at PC68: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.from_id = ((data.type_).user_).id_
       match_plugins(msg)
       redis:set("message:tg", "non")
@@ -419,69 +368,35 @@ tran = function(data)
   -- function num : 0_26 , upvalues : _ENV
   if data.ID == "UserProfilePhotos" then
     msg = data
-    -- DECOMPILER ERROR at PC5: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.text = "!!pro!!"
-    -- DECOMPILER ERROR at PC8: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.count = data.total_count_
-    -- DECOMPILER ERROR at PC13: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.photo = ((data.photos_)[0]).sizes_
-    -- DECOMPILER ERROR at PC19: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.chat_id = redis:get("pro:chatid")
-    -- DECOMPILER ERROR at PC25: Confused about usage of register: R1 in 'UnsetPending'
-
     msg.from_id = redis:get("pro:fromid")
     match_plugins(msg)
   else
     if data.ID == "Chat" then
       msg = data
-      -- DECOMPILER ERROR at PC35: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.text = "!!res2!!"
-      -- DECOMPILER ERROR at PC38: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.name = data.title_
-      -- DECOMPILER ERROR at PC45: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.photo = ((((data.type_).user_).profile_photo_).big_).persistent_id_
-      -- DECOMPILER ERROR at PC50: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.username = ((data.type_).user_).username
-      -- DECOMPILER ERROR at PC55: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.firstname = ((data.type_).user_).first_name
-      -- DECOMPILER ERROR at PC60: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.lastname = ((data.type_).user_).last_name
-      -- DECOMPILER ERROR at PC66: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.chat_id = redis:get("pro:chatid")
-      -- DECOMPILER ERROR at PC71: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.from_id = ((data.type_).user_).id_
       match_plugins(msg)
     else
       if data.ID == "Message" then
         msg = data
-        -- DECOMPILER ERROR at PC86: Confused about usage of register: R1 in 'UnsetPending'
-
         msg.text = "!!!sendbot:" .. (msg.content_).text_
-        -- DECOMPILER ERROR at PC90: Confused about usage of register: R1 in 'UnsetPending'
-
         msg.chat_id = msg.chat_id_
-        -- DECOMPILER ERROR at PC94: Confused about usage of register: R1 in 'UnsetPending'
-
         msg.from_id = msg.sender_user_id_
         redis:set("message_id:bot", msg.id_)
         match_plugins(msg)
       else
         if data.ID == "UserFull" then
           msg = data
-          -- DECOMPILER ERROR at PC110: Confused about usage of register: R1 in 'UnsetPending'
-
           msg.text = "!!!user:user"
           match_plugins(msg)
         end
@@ -528,16 +443,11 @@ match_plugin = function(plugin, plugin_name, msg)
           if plugin.run then
             local result = (plugin.run)(msg, matches)
             if result then
-              (tg.sendMessage)(msg.chat_id_, 0, 1, result, 1, "html")
+              (bot.sendMessage)(msg.chat_id_, 0, 1, result, 1, "html")
             end
           end
-          do return  end
-          -- DECOMPILER ERROR at PC33: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC33: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC33: LeaveBlock: unexpected jumping out IF_STMT
-
+          do return
+          end
         end
       end
     end
@@ -608,8 +518,6 @@ end
 
 viewMessages = function(msg)
   -- function num : 0_34 , upvalues : _ENV
-  -- DECOMPILER ERROR at PC18: Unhandled construct in 'MakeBoolean' P1
-
   if redis:get("markread") and redis:get("markread") == "on" then
     (bot.mark_read)(msg.chat_id_, {[0] = msg.id_})
   end
@@ -663,78 +571,48 @@ tdcli_update_callback = function(data)
     if data.ID == "UpdateNewMessage" then
       msg = data.message_
       viewMessages(msg)
-      -- DECOMPILER ERROR at PC169: Confused about usage of register: R1 in 'UnsetPending'
-
       if (msg.content_).photo_ then
         msg.text = "!!!photo:"
-        -- DECOMPILER ERROR at PC182: Confused about usage of register: R1 in 'UnsetPending'
-
         if (msg.content_).caption_ then
           msg.text = msg.text .. (msg.content_).caption_
         end
       else
-        -- DECOMPILER ERROR at PC190: Confused about usage of register: R1 in 'UnsetPending'
-
         if (msg.content_).animation_ then
           msg.text = "!!!gif:"
-          -- DECOMPILER ERROR at PC203: Confused about usage of register: R1 in 'UnsetPending'
-
           if (msg.content_).caption_ then
             msg.text = msg.text .. (msg.content_).caption_
           end
         else
-          -- DECOMPILER ERROR at PC211: Confused about usage of register: R1 in 'UnsetPending'
-
           if (msg.content_).ID == "MessageChatJoinByLink" then
             msg.text = "!!!tgservice:joinbylink"
           else
-            -- DECOMPILER ERROR at PC225: Confused about usage of register: R1 in 'UnsetPending'
-
             if (msg.content_).ID == "MessageSticker" then
               msg.text = "!!!sticker:" .. (((data.message_).content_).sticker_).emoji_
             else
-              -- DECOMPILER ERROR at PC233: Confused about usage of register: R1 in 'UnsetPending'
-
               if (msg.content_).document_ then
                 msg.text = "!!!document:"
-                -- DECOMPILER ERROR at PC246: Confused about usage of register: R1 in 'UnsetPending'
-
                 if (msg.content_).caption_ then
                   msg.text = msg.text .. (msg.content_).caption_
                 end
               else
-                -- DECOMPILER ERROR at PC254: Confused about usage of register: R1 in 'UnsetPending'
-
                 if (msg.content_).video_ then
                   msg.text = "!!!video:"
-                  -- DECOMPILER ERROR at PC267: Confused about usage of register: R1 in 'UnsetPending'
-
                   if (msg.content_).caption_ then
                     msg.text = msg.text .. (msg.content_).caption_
                   end
                 else
-                  -- DECOMPILER ERROR at PC275: Confused about usage of register: R1 in 'UnsetPending'
-
                   if (msg.content_).voice_ then
                     msg.text = "!!!voice:"
-                    -- DECOMPILER ERROR at PC288: Confused about usage of register: R1 in 'UnsetPending'
-
                     if (msg.content_).caption_ then
                       msg.text = msg.text .. (msg.content_).caption_
                     end
                   else
-                    -- DECOMPILER ERROR at PC296: Confused about usage of register: R1 in 'UnsetPending'
-
                     if (msg.content_).audio_ then
                       msg.text = "!!!audio:"
-                      -- DECOMPILER ERROR at PC309: Confused about usage of register: R1 in 'UnsetPending'
-
                       if (msg.content_).caption_ then
                         msg.text = msg.text .. (msg.content_).caption_
                       end
                     else
-                      -- DECOMPILER ERROR at PC315: Confused about usage of register: R1 in 'UnsetPending'
-
                       msg.text = (msg.content_).text_
                     end
                   end
@@ -744,11 +622,7 @@ tdcli_update_callback = function(data)
           end
         end
       end
-      -- DECOMPILER ERROR at PC319: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.chat_id = msg.chat_id_
-      -- DECOMPILER ERROR at PC323: Confused about usage of register: R1 in 'UnsetPending'
-
       msg.from_id = msg.sender_user_id_
       match_plugins(msg)
     else
@@ -890,8 +764,6 @@ load_plugins = function()
       local ok, err = pcall(function()
     -- function num : 0_36_0 , upvalues : _ENV, v
     local t = (loadfile("plugins/" .. v .. ".lua"))()
-    -- DECOMPILER ERROR at PC9: Confused about usage of register: R1 in 'UnsetPending'
-
     plugins[v] = t
   end
 )
