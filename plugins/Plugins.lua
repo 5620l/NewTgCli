@@ -57,7 +57,7 @@ local function list_plugins(only_enabled)
       v = string.match (v, "(.*)%.lua")
     end
   end
-  local text = text..'\nپلاگین ها بروزرسانی شدند\n\n'..nact..' پلاگین های فعال\n'..nsum..' پلاگین های نصب شده\n'
+  local text = text..'\n<b>All Plugins are Reloaded :D</b>\n\n'..nact..' <i>Enabled Plugins :)</i>\n'..nsum..' <i>Disabled Plugins :(</i>\n'
   bot.sendMessage(msg.chat_id_, 0, 1, text, 1, 'html')
 end
 
@@ -114,7 +114,7 @@ end
     return disable_plugin(matches[3])
   end
   if matches[1] == 'reload' and is_sudo(msg) then --after changed to moderator mode, set only sudo
-  text = 'بارگذاری مجدد انجام شد.'
+  text = '<b>The bot has been Reloaded by MyFather :D</b> '
 	bot.sendMessage(msg.chat_id_, 0, 1, text, 1, 'html')
     return reloadplugins(true)
   end
